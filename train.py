@@ -13,31 +13,31 @@ from models.network import Network
     '-e', '--epochs',
     help='Number of epochs to train for',
     type=click.IntRange(1, None),
-    default=10,
+    default=7,
 )
 @click.option(
     '-b', '--batch-size',
     help='Number of training examples each step',
-    type=click.IntRange(1, 1024),
-    default=50,
+    type=click.IntRange(1, None),
+    default=100,
 )
 @click.option(
     '-r', '--learning-rate',
     help='Vanilla gradient descent learning rate',
-    type=click.FloatRange(0.00001, 100),
-    default=1e-4,
+    type=click.FloatRange(0, None),
+    default=1e-1,
 )
 @click.option(
     '-l1', '--l1-coef',
     help='Linear penalty on size of each weight matrix',
-    type=click.FloatRange(0, 1),
-    default=1e-1,
+    type=click.FloatRange(0, None),
+    default=1e-2,
 )
 @click.option(
     '-l2', '--l2-coef',
     help='Squared penalty on size of each weight matrix',
-    type=click.FloatRange(0, 1),
-    default=1e-1,
+    type=click.FloatRange(0, None),
+    default=1e-2,
 )
 def main(
     epochs: int,
@@ -48,7 +48,7 @@ def main(
 ) -> None:
 
     net = Network(
-        Relu(784, 800),
+        Sigmoid(784, 800),
         SoftmaxCrossEntropy(800, 10),
     )
 

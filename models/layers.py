@@ -34,9 +34,9 @@ class Layer:
         l2_coef: float,
     ) -> None:
 
-        error = self.x.T.dot(self.dz)
-        penalty = l1_coef * np.abs(self.w) + l2_coef * np.square(self.w)
-        self.w -= learning_rate * (error + penalty)
+        self.w -= learning_rate * self.x.T.dot(self.dz)
+        self.w -= l1_coef * np.sign(self.w)
+        self.w -= l2_coef * np.abs(self.w)
 
 
 @dataclass
