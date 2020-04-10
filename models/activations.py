@@ -3,7 +3,7 @@ from typing import Callable
 import numpy as np
 
 
-# Boolean determines whether to calculate derivate instead
+# Boolean determines whether to calculate derivative instead
 Activation = Callable[[np.array, bool], np.array]
 
 
